@@ -61,7 +61,8 @@ enum List[A]:
   /** EXERCISES */
   def zipRight: List[(A, Int)] = ???
 
-  def partition(pred: A => Boolean): (List[A], List[A]) = ???
+  def partition(pred: A => Boolean): (List[A], List[A]) =
+    (filter(pred), filter(p => !pred(p)))
 
   def span(pred: A => Boolean): (List[A], List[A]) = ???
 
@@ -83,12 +84,12 @@ object List:
 
 @main def checkBehaviour(): Unit =
   val reference = List(1, 2, 3, 4)
-  println(reference.zipRight) // List((1, 0), (2, 1), (3, 2), (4, 3))
+  //println(reference.zipRight) // List((1, 0), (2, 1), (3, 2), (4, 3))
   println(reference.partition(_ % 2 == 0)) // (List(2, 4), List(1, 3))
   println(reference.span(_ % 2 != 0)) // (List(1), List(2, 3, 4))
   println(reference.span(_ < 3)) // (List(1, 2), List(3, 4))
-  println(reference.reduce(_ + _)) // 10
-  try Nil.reduce[Int](_ + _)
-  catch case ex: Exception => println(ex) // prints exception
-  println(List(10).reduce(_ + _)) // 10
-  println(reference.takeRight(3)) // List(2, 3, 4)
+  //println(reference.reduce(_ + _)) // 10
+  //try Nil.reduce[Int](_ + _)
+  //catch case ex: Exception => println(ex) // prints exception
+  //println(List(10).reduce(_ + _)) // 10
+  //println(reference.takeRight(3)) // List(2, 3, 4)
